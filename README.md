@@ -1,1 +1,1 @@
-# snowflake-101-bi-users
+# Snowflake 101 - BI Users
