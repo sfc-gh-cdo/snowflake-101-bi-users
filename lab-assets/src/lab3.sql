@@ -25,15 +25,17 @@ SELECT l_returnflag,
  ORDER BY l_returnflag, l_linestatus;
 
  
+ 
 /*----------------------------------------------------------
     LAB 3 - PART 2: Leverage persisted (cached) query results
 ----------------------------------------------------------*/
--- Run the Pricing Summary Report Query (Q1) for the second time and see how long it takes
+-- Run the Pricing Summary Report Query (Q1) for the second time and see how long it takes.
 
 -- The query runs much faster the second time because you’re using Persisted Query Results (or cached query results).
--- Ref: https://docs.snowflake.com/en/user-guide/querying-persisted-results
+-- Ref: https://docs.snowflake.com/en/user-guide/querying-persisted-results.
 
--- Click on the Query ID under Query Details to open the Query Profile
+-- Click on the Query ID under Query Details to open the Query Profile and observe.
+
 
  
 /*----------------------------------------------------------
@@ -51,18 +53,19 @@ ALTER WAREHOUSE query_wh SUSPEND;
 -- set QUERY_WH to XSMALL
 ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
 
--- run the Pricing Summary Report Query (Q1) and take note of the query duration (this should take about 1m 30s)
+-- Run the Pricing Summary Report Query (Q1) and take note of the query duration (this should take about 1m 30s)
 
 -- suspend the warehouse
 ALTER WAREHOUSE query_wh SUSPEND;
 
--- scale-Up warehouse from XSMALL to MEDIUM
+-- scale-up warehouse from XSMALL to MEDIUM
 ALTER WAREHOUSE query_wh SET warehouse_size = MEDIUM;
 
 -- Run the Pricing Summary Report Query (Q1) and take note of the query duration (this should take about 30s)
 
--- scale-Down back to XSMALL
+-- scale-down back to XSMALL
 ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
+
 
 
 /*----------------------------------------------------------
@@ -77,6 +80,3 @@ ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
     6. Under Appearance, set Orientation to Horizontal
     7. Under Data, set the X-Axis and Y-Axis to the values in the image
 ----------------------------------------------------------*/
-
-
-
