@@ -60,22 +60,23 @@ SELECT * FROM employee_names;
 
 
 -- -- (OPTIONAL) You can also wrap your query in a Stored Procedure and call it in the task
--- create or replace procedure emp_proc()
---     returns string
---     language SQL
---     as
+-- CREATE OR REPLACE PROCEDURE emp_proc()
+--     RETURNS string
+--     LANGUAGE SQL
+--     AS
 --         BEGIN
 --             TRUNCATE employee_names;
 --             INSERT INTO employee_names
---                 select first_name || ' ' || last_name as full_name, start_date
---                 from employees;
+--                 SELECT first_name || ' ' || last_name as full_name, start_date
+--                 FROM employees;
 --         END;
 
--- create or replace task employee_names_update
---     warehouse = compute_wh
---     schedule = 'USING CRON 0 2 * * * America/Toronto'
---     as
+-- CREATE OR REPLACE TASK employee_names_update
+--     WAREHOUSE = compute_wh
+--     SCHEDULE = 'USING CRON 0 2 * * * America/Toronto'
+--     AS
 --         CALL emp_proc();
+
 
 
 /*----------------------------------------------------------------------------------
@@ -105,3 +106,4 @@ VALUES ('Wallis','Sizey','wsizeyf@sf_tuts.com','36761 American Lane','Taibao','2
 
 -- check the dynamic table (if table is not updated, wait a few seconds and try again)
 SELECT * FROM employee_names_dt;
+
