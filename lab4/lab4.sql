@@ -4,7 +4,7 @@
 -- set the worksheet context
 USE ROLE ACCOUNTADMIN;
 USE WAREHOUSE query_wh;
-USE DATABASE lab2_db;
+USE DATABASE lab_db;
 USE SCHEMA public;
 
 -- create a table where we will store employee records
@@ -85,6 +85,12 @@ SELECT * FROM employee_names;
         
 -- instead of using schedules, let's create a target table that refresh automatically 
 -- when the base table gets updated using Dynamic Tables
+
+-- set the worksheet context
+USE ROLE ACCOUNTADMIN;
+USE WAREHOUSE query_wh;
+USE DATABASE lab_db;
+USE SCHEMA public;
 
 -- create a dynamic table
 CREATE OR REPLACE DYNAMIC TABLE employee_names_dt
