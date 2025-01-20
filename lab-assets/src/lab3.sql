@@ -1,6 +1,6 @@
-/*----------------------------------------------------------
+/*----------------------------------------------------------------------------------
     LAB 3 - PART 1: Run your first analytical query
-----------------------------------------------------------*/
+----------------------------------------------------------------------------------*/
 -- set the Worksheet context
 USE ROLE accountadmin;
 USE WAREHOUSE query_wh;
@@ -26,9 +26,9 @@ SELECT l_returnflag,
 
  
  
-/*----------------------------------------------------------
+/*----------------------------------------------------------------------------------
     LAB 3 - PART 2: Leverage persisted (cached) query results
-----------------------------------------------------------*/
+----------------------------------------------------------------------------------*/
 -- Run the Pricing Summary Report Query (Q1) for the second time and see how long it takes.
 
 -- The query runs much faster the second time because you’re using Persisted Query Results (or cached query results).
@@ -38,9 +38,9 @@ SELECT l_returnflag,
 
 
  
-/*----------------------------------------------------------
+/*----------------------------------------------------------------------------------
     LAB 3 - PART 3: Optimize query performance
-----------------------------------------------------------*/
+----------------------------------------------------------------------------------*/
 -- change to schema with larger data set
 USE SCHEMA tpch_sf1000;
 
@@ -68,7 +68,7 @@ ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
 
 
 
-/*----------------------------------------------------------
+/*----------------------------------------------------------------------------------
     LAB 3 - PART 4: Visualize query results using charts
 
     Follow these instructions in Snowsight:
@@ -79,4 +79,4 @@ ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
     5. Set Chart type to Bar 
     6. Under Appearance, set Orientation to Horizontal
     7. Under Data, set the X-Axis and Y-Axis to the values in the image
-----------------------------------------------------------*/
+----------------------------------------------------------------------------------*/
