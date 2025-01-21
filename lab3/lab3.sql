@@ -3,7 +3,7 @@
 **********************************************************************************/
 
 /*---------------------------------------------------------------------------------
-    Step 1) Create a new warehouse to run your queries on
+    Create a new warehouse to run your queries on
 ---------------------------------------------------------------------------------*/
 /*
     1. Navigate to Admin > Warehouses.
@@ -24,7 +24,7 @@
 */
 
 /*---------------------------------------------------------------------------------
-    Step 2) Set the worksheet context and run your first analytical query.
+    Set the worksheet context and run your first analytical query.
 ---------------------------------------------------------------------------------*/
 -- set the Worksheet context
 USE ROLE accountadmin;
@@ -85,6 +85,11 @@ SELECT l_returnflag,
 /**********************************************************************************
     LAB 3 - PART 3: Optimize query performance
 **********************************************************************************/
+
+/*---------------------------------------------------------------------------------
+    Run the same query on different warehouse sizes to see how this impacts
+    performance.
+---------------------------------------------------------------------------------*/
 -- for this exercise we'll use a schema with larger data set
 USE SCHEMA tpch_sf1000;
 
@@ -107,13 +112,16 @@ ALTER WAREHOUSE query_wh SET warehouse_size = MEDIUM;
 
 -- Run the Pricing Summary Report Query (Q1) and take note of the query duration (this may take about 30s)
 
--- scale-down back to XSMALL
+-- scale-down back to XSMALL for the next lab
 ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
 
 
 /**********************************************************************************
     LAB 3 - PART 4: Visualize query results using charts
 **********************************************************************************/
+/*---------------------------------------------------------------------------------
+    Turn your SQL results into charts
+---------------------------------------------------------------------------------*/
 /*
     Follow these instructions in Snowsight:
     1. Navigate to Projects > Worksheets
