@@ -50,25 +50,45 @@ SELECT l_returnflag,
  ORDER BY l_returnflag, l_linestatus;
 
  
- 
 /**********************************************************************************
     LAB 3 - PART 2: Leverage persisted (cached) query results
 **********************************************************************************/
--- Run the Pricing Summary Report Query (Q1) for the second time and see how long it takes.
 
--- The query runs much faster the second time because you’re using Persisted Query Results (or cached query results).
--- Ref: https://docs.snowflake.com/en/user-guide/querying-persisted-results.
+/*---------------------------------------------------------------------------------
+    Run the same query again and compare the query duration and the Query Profile.
+---------------------------------------------------------------------------------*/
+/*
+    1. If you haven’t already, take note of the ‘Query duration’ in the ‘Query Details’ for the previous query you ran.
+    2. Run the Pricing Summary Report Query (Q1) for the second time and see how long it takes.
+    3. In the Query Details section, click on the Query ID (this will open the Query Profile in a new browser tab).
 
--- Click on the Query ID under Query Details to open the Query Profile and observe.
+    Why the query ran FASTER the second time
+        It’s because you’re using Persisted Query Results!
+        When a query is executed, the result is persisted (i.e. cached) for a period of time. 
+        At the end of the time period, the result is purged from the system.
+        Snowflake uses persisted query results to avoid re-generating results when nothing has changed 
+        (i.e. “retrieval optimization”)
+
+    Note: 
+        For persisted query results of all sizes, the cache expires after 24 hours.
+        Each time the persisted result for a query is reused, Snowflake resets the 
+        24-hour retention period for the result, up to a maximum of 31 days from 
+        the date and time that the query was first executed. After 31 days, the 
+        result is purged and the next time the query is submitted, a new result 
+        is generated and persisted.
+
+    Ref: https://docs.snowflake.com/en/user-guide/querying-persisted-results.
+
+*/
 
  
 /**********************************************************************************
     LAB 3 - PART 3: Optimize query performance
 **********************************************************************************/
--- change to schema with larger data set
+-- for this exercise we'll use a schema with larger data set
 USE SCHEMA tpch_sf1000;
 
--- turn off persisted (cached) query results
+-- turn off Persisted Query Results so that cache is not used when we rerun the query
 ALTER USER SET USE_CACHED_RESULT = false;
 
 -- suspend the warehouse
@@ -77,7 +97,7 @@ ALTER WAREHOUSE query_wh SUSPEND;
 -- set QUERY_WH to XSMALL
 ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
 
--- Run the Pricing Summary Report Query (Q1) and take note of the query duration (this should take about 1m 30s)
+-- Run the Pricing Summary Report Query (Q1) and take note of the query duration (this may take about 1m 30s)
 
 -- suspend the warehouse
 ALTER WAREHOUSE query_wh SUSPEND;
@@ -85,7 +105,7 @@ ALTER WAREHOUSE query_wh SUSPEND;
 -- scale-up warehouse from XSMALL to MEDIUM
 ALTER WAREHOUSE query_wh SET warehouse_size = MEDIUM;
 
--- Run the Pricing Summary Report Query (Q1) and take note of the query duration (this should take about 30s)
+-- Run the Pricing Summary Report Query (Q1) and take note of the query duration (this may take about 30s)
 
 -- scale-down back to XSMALL
 ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
