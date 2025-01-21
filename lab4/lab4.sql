@@ -1,6 +1,10 @@
 /**********************************************************************************
     LAB 4 - PART 1: Schedule query execution
 **********************************************************************************/
+
+/*---------------------------------------------------------------------------------
+    Learn how to schedule queries.
+---------------------------------------------------------------------------------*/
 -- set the worksheet context
 USE ROLE ACCOUNTADMIN;
 USE WAREHOUSE query_wh;
@@ -59,33 +63,32 @@ EXECUTE TASK employee_names_update;
 SELECT * FROM employee_names;
 
 
--- -- (OPTIONAL) You can also wrap your query in a Stored Procedure and call it in the task
--- CREATE OR REPLACE PROCEDURE emp_proc()
---     RETURNS string
---     LANGUAGE SQL
---     AS
---         BEGIN
---             TRUNCATE employee_names;
---             INSERT INTO employee_names
---                 SELECT first_name || ' ' || last_name as full_name, start_date
---                 FROM employees;
---         END;
+-- (OPTIONAL) You can also wrap your query in a Stored Procedure and call it in the task
+CREATE OR REPLACE PROCEDURE emp_proc()
+    RETURNS string
+    LANGUAGE SQL
+    AS
+        BEGIN
+            TRUNCATE employee_names;
+            INSERT INTO employee_names
+                SELECT first_name || ' ' || last_name as full_name, start_date
+                FROM employees;
+        END;
 
--- CREATE OR REPLACE TASK employee_names_update
---     WAREHOUSE = compute_wh
---     SCHEDULE = 'USING CRON 0 2 * * * America/Toronto'
---     AS
---         CALL emp_proc();
-
+CREATE OR REPLACE TASK employee_names_update
+    WAREHOUSE = compute_wh
+    SCHEDULE = 'USING CRON 0 2 * * * America/Toronto'
+    AS
+        CALL emp_proc();
 
 
 /**********************************************************************************
     LAB 4 - PART 2: Build continuous data pipelines
 **********************************************************************************/
-        
--- instead of using schedules, let's create a target table that refresh automatically 
--- when the base table gets updated using Dynamic Tables
 
+/*---------------------------------------------------------------------------------
+    Simplify your tranformation pipelines using Dynamic Tables.
+---------------------------------------------------------------------------------*/
 -- set the worksheet context
 USE ROLE ACCOUNTADMIN;
 USE WAREHOUSE query_wh;
@@ -113,3 +116,4 @@ VALUES ('Wallis','Sizey','wsizeyf@sf_tuts.com','36761 American Lane','Taibao','2
 -- check the dynamic table (if table is not updated, wait a few seconds and try again)
 SELECT * FROM employee_names_dt;
 
+-- END OF LAB 4
