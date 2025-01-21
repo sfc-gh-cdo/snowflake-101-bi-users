@@ -1,6 +1,31 @@
-/*----------------------------------------------------------------------------------
+/**********************************************************************************
     LAB 3 - PART 1: Run your first analytical query
-----------------------------------------------------------------------------------*/
+**********************************************************************************/
+
+/*---------------------------------------------------------------------------------
+    Step 1) Create a new warehouse to run your queries on
+---------------------------------------------------------------------------------*/
+/*
+    1. Navigate to Admin > Warehouses.
+    2. Click on + Warehouse                    
+    3. Fill in the details of the warehouse using the below values and click Create Warehouse.
+            Warehouse Name: QUERY_WH
+            Comment: Warehouse for lab exercises.
+            Type: Standard
+            Size: X-Small
+
+    Tip: You can also create warehouses using SQL in the worksheet.
+
+            CREATE OR REPLACE WAREHOUSE QUERY_WH
+               WAREHOUSE_TYPE = 'STANDARD'
+               WAREHOUSE_SIZE = 'X-SMALL'
+               INITIALLY_SUSPENDED = TRUE
+               COMMENT = 'Warehouse for lab exercises.';
+*/
+-----
+/*---------------------------------------------------------------------------------
+    Step 2) Set the worksheet context and run your first analytical query.
+---------------------------------------------------------------------------------*/
 -- set the Worksheet context
 USE ROLE accountadmin;
 USE WAREHOUSE query_wh;
@@ -26,9 +51,9 @@ SELECT l_returnflag,
 
  
  
-/*----------------------------------------------------------------------------------
+/**********************************************************************************
     LAB 3 - PART 2: Leverage persisted (cached) query results
-----------------------------------------------------------------------------------*/
+**********************************************************************************/
 -- Run the Pricing Summary Report Query (Q1) for the second time and see how long it takes.
 
 -- The query runs much faster the second time because you’re using Persisted Query Results (or cached query results).
@@ -36,11 +61,10 @@ SELECT l_returnflag,
 
 -- Click on the Query ID under Query Details to open the Query Profile and observe.
 
-
  
-/*----------------------------------------------------------------------------------
+/**********************************************************************************
     LAB 3 - PART 3: Optimize query performance
-----------------------------------------------------------------------------------*/
+**********************************************************************************/
 -- change to schema with larger data set
 USE SCHEMA tpch_sf1000;
 
@@ -67,10 +91,10 @@ ALTER WAREHOUSE query_wh SET warehouse_size = MEDIUM;
 ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
 
 
-
-/*----------------------------------------------------------------------------------
+/**********************************************************************************
     LAB 3 - PART 4: Visualize query results using charts
-
+**********************************************************************************/
+/*
     Follow these instructions in Snowsight:
     1. Navigate to Projects > Worksheets
     2. Open your “LAB 3” worksheet
@@ -79,4 +103,4 @@ ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
     5. Set Chart type to Bar 
     6. Under Appearance, set Orientation to Horizontal
     7. Under Data, set the X-Axis and Y-Axis to the values in the image
-----------------------------------------------------------------------------------*/
+*/
