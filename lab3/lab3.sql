@@ -22,7 +22,7 @@
                INITIALLY_SUSPENDED = TRUE
                COMMENT = 'Warehouse for lab exercises.';
 */
------
+
 /*---------------------------------------------------------------------------------
     Step 2) Set the worksheet context and run your first analytical query.
 ---------------------------------------------------------------------------------*/
