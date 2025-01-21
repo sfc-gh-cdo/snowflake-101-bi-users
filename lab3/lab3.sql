@@ -104,3 +104,5 @@ ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
     6. Under Appearance, set Orientation to Horizontal
     7. Under Data, set the X-Axis and Y-Axis to the values in the image
 */
+
+-- END OF LAB 3
