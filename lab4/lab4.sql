@@ -8,7 +8,7 @@
 -- set the worksheet context
 USE ROLE ACCOUNTADMIN;
 USE WAREHOUSE query_wh;
-USE DATABASE lab_db;
+USE DATABASE hr_db;
 USE SCHEMA public;
 
 -- create a table where we will store employee records
