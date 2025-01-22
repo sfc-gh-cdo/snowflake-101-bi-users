@@ -63,7 +63,7 @@ EXECUTE TASK employee_names_update;
 SELECT * FROM employee_names;
 
 
--- (OPTIONAL) You can also wrap your query in a Stored Procedure and call it in the task
+-- You can also wrap your query in a Stored Procedure and call it in the task
 CREATE OR REPLACE PROCEDURE emp_proc()
     RETURNS string
     LANGUAGE SQL
