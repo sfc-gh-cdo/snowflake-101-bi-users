@@ -75,7 +75,7 @@ CREATE OR REPLACE PROCEDURE emp_proc()
                 FROM employees;
         END;
 
-CREATE OR REPLACE TASK employee_names_update
+CREATE OR REPLACE TASK employee_names_update_2
     WAREHOUSE = compute_wh
     SCHEDULE = 'USING CRON 0 2 * * * America/Toronto'
     AS
