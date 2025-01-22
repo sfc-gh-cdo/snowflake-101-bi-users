@@ -32,8 +32,8 @@ USE WAREHOUSE query_wh;
 USE DATABASE snowflake_sample_data;
 USE SCHEMA tpch_sf100;
 
-// Pricing Summary Report Query (Q1) 
-// this query reports the amount of business that was billed, shipped, and returned.
+-- Pricing Summary Report Query (Q1) 
+-- this query reports the amount of business that was billed, shipped, and returned.
 SELECT l_returnflag,
        l_linestatus,
        sum(l_quantity) as sum_qty,
