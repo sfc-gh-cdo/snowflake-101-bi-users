@@ -150,6 +150,12 @@ ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
 /*---------------------------------------------------------------------------------
     Turn your SQL results into charts
 ---------------------------------------------------------------------------------*/
+-- set the Worksheet context
+USE ROLE accountadmin;
+USE WAREHOUSE query_wh;
+USE DATABASE snowflake_sample_data;
+USE SCHEMA tpch_sf100;
+
 /*
     Follow these instructions in Snowsight:
     1. Navigate to Projects > Worksheets
