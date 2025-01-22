@@ -92,7 +92,7 @@ CREATE OR REPLACE TASK employee_names_update_2
 -- set the worksheet context
 USE ROLE ACCOUNTADMIN;
 USE WAREHOUSE query_wh;
-USE DATABASE lab_db;
+USE DATABASE hr_db;
 USE SCHEMA public;
 
 -- create a dynamic table
