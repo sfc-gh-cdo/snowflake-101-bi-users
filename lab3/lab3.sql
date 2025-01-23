@@ -140,9 +140,6 @@ SELECT l_returnflag,
  GROUP BY l_returnflag,l_linestatus
  ORDER BY l_returnflag, l_linestatus;
 
--- scale-down back to XSMALL for the next lab
-ALTER WAREHOUSE query_wh SET warehouse_size = XSMALL;
-
 
 /**********************************************************************************
     LAB 3 - PART 4: Visualize query results using charts
